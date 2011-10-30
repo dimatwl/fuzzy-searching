@@ -8,6 +8,7 @@
 
 using std::vector;
 using std::string;
+using std::min;
 
 
 class Levenshtein {

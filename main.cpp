@@ -8,7 +8,7 @@ int main (int argc, char** argv) {
     cout<<"LCS: "<<LCS::GetLCS(firstString,secondString)<<" (length = "<<LCS::GetLCSLength(firstString,secondString)<<" )"<<endl<<endl;
     cout<<"Levenshtein: "<<endl;
     vector<string> listOfChanges = Levenshtein::GetListOfChanges(firstString,secondString);
-    for (size_t i = 0; i < listOfChanges.size(); i++)
+    for (size_t i = 0; i < listOfChanges.size(); ++i)
         cout<<listOfChanges[i]<<endl;
     cout<<"(distance = "<<Levenshtein::GetLD(firstString,secondString)<<" )"<<endl;
     return 0;
