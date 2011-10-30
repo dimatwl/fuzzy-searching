@@ -1,11 +1,11 @@
 #include "LCS.h"
 
-std::vector<std::vector<unsigned int> > LCS::GetLCSTable(const std::string & inpFirstString, const std::string & inpSecondString){
-    std::string X = inpFirstString;
-    std::string Y = inpSecondString;
+vector<vector<unsigned int> > LCS::GetLCSTable(const string & inpFirstString, const string & inpSecondString){
+    string X = inpFirstString;
+    string Y = inpSecondString;
     size_t m = X.length();
     size_t n = Y.length();
-    std::vector<std::vector<unsigned int> > c(m+1, std::vector<unsigned int>(n+1));
+    vector<vector<unsigned int> > c(m+1, vector<unsigned int>(n+1));
     for (size_t i = 0; i <= m; i++)
         c[i][0] = 0;
     for (size_t j = 0; j <= n; j++)
@@ -15,19 +15,19 @@ std::vector<std::vector<unsigned int> > LCS::GetLCSTable(const std::string & inp
             if (X[i-1] == Y[j-1])
                 c[i][j] = c[i-1][j-1] + 1;
             else
-                c[i][j] = std::max(c[i][j-1], c[i-1][j]);
+                c[i][j] = max(c[i][j-1], c[i-1][j]);
         }
     }
     return c;
 }
 
-std::string LCS::GetLCSFromTable(const std::vector<std::vector<unsigned int> > &inpLCSTable, const std::string& inpFirstString, const std::string& inpSecondString){
-    std::vector<std::vector<unsigned int> > c = inpLCSTable;
-    std::string X = inpFirstString;
-    std::string Y = inpSecondString;
+string LCS::GetLCSFromTable(const vector<std::vector<unsigned int> > &inpLCSTable, const string& inpFirstString, const string& inpSecondString){
+    vector<vector<unsigned int> > c = inpLCSTable;
+    string X = inpFirstString;
+    string Y = inpSecondString;
     size_t i = X.length();
     size_t j = Y.length();
-    std::string LCS = "";
+    string LCS = "";
     while (i != 0 && j != 0){
         if (X[i-1] == Y[j-1]){
             LCS.push_back(X[i-1]);
@@ -43,15 +43,15 @@ std::string LCS::GetLCSFromTable(const std::vector<std::vector<unsigned int> > &
 }
 
 
-std::string LCS::GetLCS(const std::string& inpFirstString, const std::string& inpSecondString){
-    std::vector<std::vector<unsigned int> > LCSTable = LCS::GetLCSTable(inpFirstString,inpSecondString);
-    std::string LCS = LCS::GetLCSFromTable(LCSTable,inpFirstString,inpSecondString);
+string LCS::GetLCS(const string& inpFirstString, const string& inpSecondString){
+    vector<vector<unsigned int> > LCSTable = LCS::GetLCSTable(inpFirstString,inpSecondString);
+    string LCS = LCS::GetLCSFromTable(LCSTable,inpFirstString,inpSecondString);
     return LCS;
 }
 
 
-unsigned int LCS::GetLCSLength(const std::string& inpFirstString, const std::string& inpSecondString){
-    std::vector<std::vector<unsigned int> > LCSTable = LCS::GetLCSTable(inpFirstString,inpSecondString);
+unsigned int LCS::GetLCSLength(const string& inpFirstString, const string& inpSecondString){
+    vector<vector<unsigned int> > LCSTable = LCS::GetLCSTable(inpFirstString,inpSecondString);
     return LCSTable[LCSTable.size()-1][LCSTable[LCSTable.size()-1].size()-1];
     /*for (size_t i = 0; i < LCSTable.size(); i++){
         for (size_t j = 0; j < LCSTable[i].size(); j++)

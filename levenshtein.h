@@ -3,16 +3,20 @@
 
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <iostream>
+
+
+
+using std::vector;
+using std::string;
+
 
 class Levenshtein {
-    static std::vector<std::vector<unsigned int> > GetLDTable(const std::string& inpFirstString, const std::string& inpSecondString);
-    static std::vector<std::string> GetListOfChangesFromTable(const std::vector<std::vector<unsigned int> > &inpLDTable, const std::string& inpFirstString, const std::string& inpSecondString);
+    static vector<vector<unsigned int> > GetLDTable(const string& inpFirstString, const string& inpSecondString);
+    static vector<string> GetListOfChangesFromTable(const vector<vector<unsigned int> > &inpLDTable, const string& inpFirstString, const string& inpSecondString);
     
 public:
-    static unsigned int GetLD(const std::string& inpFirstString, const std::string& inpSecondString);
-    static std::vector<std::string> GetListOfChanges(const std::string& inpFirstString, const std::string& inpSecondString);
+    static unsigned int GetLD(const string& inpFirstString, const string& inpSecondString);
+    static vector<string> GetListOfChanges(const string& inpFirstString, const string& inpSecondString);
 };
 
 

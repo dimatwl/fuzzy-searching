@@ -6,13 +6,17 @@
 #include <algorithm>
 #include <iostream>
 
+using std::vector;
+using std::string;
+using std::max;
+
 class LCS {
-    static std::vector<std::vector<unsigned int> > GetLCSTable(const std::string& inpFirstString, const std::string& inpSecondString);
-    static std::string GetLCSFromTable(const std::vector<std::vector<unsigned int> > &inpLCSTable, const std::string& inpFirstString, const std::string& inpSecondString);
+    static vector<vector<unsigned int> > GetLCSTable(const string& inpFirstString, const string& inpSecondString);
+    static string GetLCSFromTable(const vector<vector<unsigned int> > &inpLCSTable, const string& inpFirstString, const string& inpSecondString);
     
 public:
-    static std::string GetLCS(const std::string& inpFirstString, const std::string& inpSecondString);
-    static unsigned int GetLCSLength(const std::string& inpFirstString, const std::string& inpSecondString);
+    static string GetLCS(const string& inpFirstString, const string& inpSecondString);
+    static unsigned int GetLCSLength(const string& inpFirstString, const string& inpSecondString);
 };
 
 

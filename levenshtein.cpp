@@ -1,11 +1,11 @@
 #include "levenshtein.h"
 
-std::vector<std::vector<unsigned int> > Levenshtein::GetLDTable(const std::string& inpFirstString, const std::string& inpSecondString){
-    std::string s = inpFirstString;
-    std::string t = inpSecondString;
+vector<vector<unsigned int> > Levenshtein::GetLDTable(const string& inpFirstString, const string& inpSecondString){
+    string s = inpFirstString;
+    string t = inpSecondString;
     size_t m = s.length();
     size_t n = t.length();
-    std::vector<std::vector<unsigned int> > d(m+1, std::vector<unsigned int>(n+1));
+    vector<vector<unsigned int> > d(m+1, std::vector<unsigned int>(n+1));
     for (size_t i = 0; i <= m; i++)
         d[i][0] = i;
     for (size_t j = 0; j <= n; j++)
@@ -26,14 +26,14 @@ std::vector<std::vector<unsigned int> > Levenshtein::GetLDTable(const std::strin
 
 }
 
-std::vector<std::string> Levenshtein::GetListOfChangesFromTable(const std::vector<std::vector<unsigned int> > &inpLDTable, const std::string& inpFirstString, const std::string& inpSecondString){
-    std::string s = inpFirstString;
-    std::string t = inpSecondString;
-    std::string tmpStr = s;
+vector<string> Levenshtein::GetListOfChangesFromTable(const vector<vector<unsigned int> > &inpLDTable, const string& inpFirstString, const string& inpSecondString){
+    string s = inpFirstString;
+    string t = inpSecondString;
+    string tmpStr = s;
     size_t i = s.length();
     size_t j = t.length();
-    std::vector<std::vector<unsigned int> > d = inpLDTable;
-    std::vector<std::string> result(1,tmpStr);
+    vector<vector<unsigned int> > d = inpLDTable;
+    vector<string> result(1,tmpStr);
     while (i != 0 || j != 0){
         if (i == 0){
             tmpStr = tmpStr.substr(0,i) + t[j-1] + tmpStr.substr(i,tmpStr.length()-i); // an insertion
@@ -67,13 +67,13 @@ std::vector<std::string> Levenshtein::GetListOfChangesFromTable(const std::vecto
 }
 
 
-unsigned int Levenshtein::GetLD(const std::string& inpFirstString, const std::string& inpSecondString){
-    std::vector<std::vector<unsigned int> > LDTable = Levenshtein::GetLDTable(inpFirstString,inpSecondString);
+unsigned int Levenshtein::GetLD(const string& inpFirstString, const string& inpSecondString){
+    vector<vector<unsigned int> > LDTable = Levenshtein::GetLDTable(inpFirstString,inpSecondString);
     return LDTable[LDTable.size()-1][LDTable[LDTable.size()-1].size()-1];
 }
 
 
-std::vector<std::string> Levenshtein::GetListOfChanges(const std::string& inpFirstString, const std::string& inpSecondString){
-    std::vector<std::vector<unsigned int> > LDTable = Levenshtein::GetLDTable(inpFirstString,inpSecondString);
+vector<string> Levenshtein::GetListOfChanges(const string& inpFirstString, const string& inpSecondString){
+    vector<vector<unsigned int> > LDTable = Levenshtein::GetLDTable(inpFirstString,inpSecondString);
     return Levenshtein::GetListOfChangesFromTable(LDTable, inpFirstString,inpSecondString);
 }
