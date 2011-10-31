@@ -1,7 +1,9 @@
 CC=g++
 CFLAGS=-Wall
 
-OBJECTS=main.o LCS.o levenshtein.o
+SOURCES = main.cpp LCS.cpp levenshtein.cpp
+OBJECTS = $(SOURCES:%.cpp=%.o)
+DEPS = make.dep
 TARGET=tst
 
 RM=rm -f
@@ -13,9 +15,11 @@ $(TARGET): $(OBJECTS)
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< 
 
-main.o: main.cpp main.h 
-LCS.o: LCS.cpp LCS.h
-levenshtein.o: levenshtein.cpp levenshtein.h
+
+$(DEPS): $(SOURCES)
+	$(CC) -M $(SOURCES) > $(DEPS)
+
+-include $(DEPS)
 
 clean:
-	$(RM) $(OBJECTS) $(TARGET)
+	$(RM) $(OBJECTS) $(TARGET) $(DEPS)
