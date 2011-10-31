@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-
+#include "general_algorithm.h"
 
 
 using std::vector;
@@ -11,13 +11,16 @@ using std::string;
 using std::min;
 
 
-class Levenshtein {
-    static vector<vector<unsigned int> > GetLDTable(const string& inpFirstString, const string& inpSecondString);
-    static vector<string> GetListOfChangesFromTable(const vector<vector<unsigned int> > &inpLDTable, const string& inpFirstString, const string& inpSecondString);
+class Levenshtein: public GeneralAlgorithm {
+    vector<vector<unsigned int> > GetLDTable(const string& inpFirstString, const string& inpSecondString) const;
+    vector<string> GetListOfChangesFromTable(const vector<vector<unsigned int> > &inpLDTable, const string& inpFirstString, const string& inpSecondString) const;
+    unsigned int GetLD(const string& inpFirstString, const string& inpSecondString) const;
+    vector<string> GetListOfChanges(const string& inpFirstString, const string& inpSecondString) const;
     
 public:
-    static unsigned int GetLD(const string& inpFirstString, const string& inpSecondString);
-    static vector<string> GetListOfChanges(const string& inpFirstString, const string& inpSecondString);
+    double Prefix(const string& pattern, const string& testString) const;
+    double Suffix(const string& pattern, const string& testString) const;
+    double Mean(const string& pattern, const string& testString) const;
 };
 
 

@@ -5,11 +5,16 @@ int main (int argc, char** argv) {
     string secondString("sitting");
     cout<<firstString<<endl;
     cout<<secondString<<endl;
-    cout<<"LCS: "<<LCS::GetLCS(firstString,secondString)<<" (length = "<<LCS::GetLCSLength(firstString,secondString)<<" )"<<endl<<endl;
-    cout<<"Levenshtein: "<<endl;
-    vector<string> listOfChanges = Levenshtein::GetListOfChanges(firstString,secondString);
-    for (size_t i = 0; i < listOfChanges.size(); ++i)
-        cout<<listOfChanges[i]<<endl;
-    cout<<"(distance = "<<Levenshtein::GetLD(firstString,secondString)<<" )"<<endl;
+    GeneralAlgorithm* alg = new LCS;
+    FuzzyLib lb(alg);
+    cout<<"LCS:"<<endl<<"Prefix = "<<lb.Prefix(firstString,secondString)<<endl;
+    cout<<"Suffix = "<<lb.Suffix(firstString,secondString)<<endl;
+    cout<<"Mean = "<<lb.Mean(firstString,secondString)<<endl;
+    delete alg;
+    alg = new Levenshtein;
+    lb.SetAlgorithm(alg);
+    cout<<"Levenshtein:"<<endl<<"Prefix = "<<lb.Prefix(firstString,secondString)<<endl;
+    cout<<"Suffix = "<<lb.Suffix(firstString,secondString)<<endl;
+    cout<<"Mean = "<<lb.Mean(firstString,secondString)<<endl;
     return 0;
 }

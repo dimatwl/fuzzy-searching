@@ -3,20 +3,23 @@
 
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <iostream>
+#include "general_algorithm.h"
+
 
 using std::vector;
 using std::string;
 using std::max;
 
-class LCS {
-    static vector<vector<unsigned int> > GetLCSTable(const string& inpFirstString, const string& inpSecondString);
-    static string GetLCSFromTable(const vector<vector<unsigned int> > &inpLCSTable, const string& inpFirstString, const string& inpSecondString);
+class LCS: public GeneralAlgorithm {
+    vector<vector<unsigned int> > GetLCSTable(const string& inpFirstString, const string& inpSecondString) const;
+    string GetLCSFromTable(const vector<vector<unsigned int> > &inpLCSTable, const string& inpFirstString, const string& inpSecondString) const;
+    string GetLCS(const string& inpFirstString, const string& inpSecondString) const;
+    unsigned int GetLCSLength(const string& inpFirstString, const string& inpSecondString) const;
     
 public:
-    static string GetLCS(const string& inpFirstString, const string& inpSecondString);
-    static unsigned int GetLCSLength(const string& inpFirstString, const string& inpSecondString);
+    double Prefix(const string& pattern, const string& testString) const;
+    double Suffix(const string& pattern, const string& testString) const;
+    double Mean(const string& pattern, const string& testString) const;
 };
 
 

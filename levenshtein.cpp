@@ -1,6 +1,6 @@
 #include "levenshtein.h"
 
-vector<vector<unsigned int> > Levenshtein::GetLDTable(const string& inpFirstString, const string& inpSecondString){
+vector<vector<unsigned int> > Levenshtein::GetLDTable(const string& inpFirstString, const string& inpSecondString) const{
     string s = inpFirstString;
     string t = inpSecondString;
     size_t m = s.length();
@@ -26,7 +26,7 @@ vector<vector<unsigned int> > Levenshtein::GetLDTable(const string& inpFirstStri
 
 }
 
-vector<string> Levenshtein::GetListOfChangesFromTable(const vector<vector<unsigned int> > &inpLDTable, const string& inpFirstString, const string& inpSecondString){
+vector<string> Levenshtein::GetListOfChangesFromTable(const vector<vector<unsigned int> > &inpLDTable, const string& inpFirstString, const string& inpSecondString) const{
     string s = inpFirstString;
     string t = inpSecondString;
     string tmpStr = s;
@@ -67,13 +67,24 @@ vector<string> Levenshtein::GetListOfChangesFromTable(const vector<vector<unsign
 }
 
 
-unsigned int Levenshtein::GetLD(const string& inpFirstString, const string& inpSecondString){
-    vector<vector<unsigned int> > LDTable = Levenshtein::GetLDTable(inpFirstString,inpSecondString);
+unsigned int Levenshtein::GetLD(const string& inpFirstString, const string& inpSecondString) const{
+    vector<vector<unsigned int> > LDTable =this->GetLDTable(inpFirstString,inpSecondString);
     return LDTable[LDTable.size()-1][LDTable[LDTable.size()-1].size()-1];
 }
 
 
-vector<string> Levenshtein::GetListOfChanges(const string& inpFirstString, const string& inpSecondString){
-    vector<vector<unsigned int> > LDTable = Levenshtein::GetLDTable(inpFirstString,inpSecondString);
-    return Levenshtein::GetListOfChangesFromTable(LDTable, inpFirstString,inpSecondString);
+vector<string> Levenshtein::GetListOfChanges(const string& inpFirstString, const string& inpSecondString) const{
+    vector<vector<unsigned int> > LDTable = this->GetLDTable(inpFirstString,inpSecondString);
+    return this->GetListOfChangesFromTable(LDTable, inpFirstString,inpSecondString);
+}
+
+double Levenshtein::Prefix(const string& pattern, const string& testString) const{
+    return static_cast<double>(this->GetLD(pattern, testString)) / static_cast<double>(pattern.length());
+}
+double Levenshtein::Suffix(const string& pattern, const string& testString) const{
+    return static_cast<double>(this->GetLD(pattern, testString)) / static_cast<double>(testString.length());
+}
+double Levenshtein::Mean(const string& pattern, const string& testString) const{
+    double mean = static_cast<double>(testString.length() + pattern.length()) / 2.0;
+    return static_cast<double>(this->GetLD(pattern, testString)) / mean;
 }
