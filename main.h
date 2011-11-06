@@ -5,6 +5,7 @@
 #include "LCS.h"
 #include "levenshtein.h"
 #include "fuzzy_lib.h"
+#include "matching_algorithm.h"
 
 using std::vector;
 using std::string;

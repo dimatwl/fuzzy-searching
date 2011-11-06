@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-Wall
 
-SOURCES = main.cpp LCS.cpp levenshtein.cpp general_algorithm.cpp fuzzy_lib.cpp
+SOURCES = main.cpp LCS.cpp levenshtein.cpp general_algorithm.cpp matching_algorithm.cpp fuzzy_lib.cpp
 OBJECTS = $(SOURCES:%.cpp=%.o)
 DEPS = make.dep
 TARGET=tst

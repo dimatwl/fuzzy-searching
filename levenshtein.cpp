@@ -88,3 +88,15 @@ double Levenshtein::Mean(const string& pattern, const string& testString) const{
     double mean = static_cast<double>(testString.length() + pattern.length()) / 2.0;
     return static_cast<double>(this->GetLD(pattern, testString)) / mean;
 }
+
+void Levenshtein::SetPattern(const string & pattern, unsigned int distance){
+        this->myPattern = pattern;
+        this->myDistance = distance;
+}
+
+bool Levenshtein::Match(const string& testString) const{
+        if (this->GetLD(this->myPattern, testString) <= myDistance)
+            return true;
+        else
+            return false;
+}

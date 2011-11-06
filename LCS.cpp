@@ -65,3 +65,15 @@ double LCS::Mean(const string& pattern, const string& testString) const{
     double mean = static_cast<double>(testString.length() +pattern.length()) / 2.0;
     return static_cast<double>(this->GetLCSLength(pattern, testString)) / mean;
 }
+
+void LCS::SetPattern(const string & pattern, unsigned int distance){
+        this->myPattern = pattern;
+        this->myDistance = distance;
+}
+
+bool LCS::Match(const string& testString) const{
+        if (this->GetLCSLength(this->myPattern, testString) <= myDistance)
+            return true;
+        else
+            return false;
+}
