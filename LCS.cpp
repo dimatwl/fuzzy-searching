@@ -77,3 +77,13 @@ bool LCS::Match(const string& testString) const{
         else
             return false;
 }
+
+extern "C"{
+    LCS* Create(){
+        return new LCS;
+    }
+
+    void Destroy(LCS* obj){
+        delete obj;
+    }
+}

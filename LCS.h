@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "general_algorithm.h"
 #include "matching_algorithm.h"
 

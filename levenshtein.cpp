@@ -100,3 +100,14 @@ bool Levenshtein::Match(const string& testString) const{
         else
             return false;
 }
+
+
+extern "C"{
+    Levenshtein* Create(){
+        return new Levenshtein;
+    }
+
+    void Destroy(Levenshtein* obj){
+        delete obj;
+    }
+}

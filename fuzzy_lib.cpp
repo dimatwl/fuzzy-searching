@@ -22,3 +22,17 @@ void FuzzyLib::SetPattern(const string & pattern, unsigned int distance){
 bool FuzzyLib::Match(const string& testString) const{
 	return this->myMatchingAlgorithm->Match(testString);
 }
+
+extern "C"{
+    FuzzyLib* CreateG(GeneralAlgorithm* inpGeneralAlgorithm){
+        return new FuzzyLib(inpGeneralAlgorithm);
+    }
+    
+    FuzzyLib* CreateM(MatchingAlgorithm* inpMatchingAlgorithm){
+        return new FuzzyLib(inpMatchingAlgorithm);
+    }
+    
+    void Destroy(FuzzyLib* obj){
+        delete obj;
+    }
+}
