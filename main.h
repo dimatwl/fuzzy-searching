@@ -5,6 +5,7 @@
 #include "matching_algorithm.h"
 #include "LCS.h"
 #include "levenshtein.h"
+#include "levenshtein_automata.h"
 #include "fuzzy_lib.h"
 #include <dlfcn.h>
 
