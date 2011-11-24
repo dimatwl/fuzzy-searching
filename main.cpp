@@ -14,6 +14,7 @@ int main (int argc, char** argv) {
 
     FuzzyLib lib(alg);
     
+    //cout<<lib->Prefix(firstString,secondString)<<endl;
     lib.SetPattern(firstString,5);
     cout<<lib.Match(secondString)<<endl;
     return 0;

@@ -4,7 +4,7 @@ CFLAGS=-Wall
 SOURCES = main.cpp
 LCSSOURCES = LCS.cpp general_algorithm.cpp matching_algorithm.cpp
 LEVSOURCES = levenshtein.cpp general_algorithm.cpp matching_algorithm.cpp
-LEVAUTOMATASOURCES = levenshtein_automata.cpp DFA.cpp NFA.cpp DFAState.cpp NFAState.cpp pair.cpp
+LEVAUTOMATASOURCES = levenshtein_automata.cpp DFA.cpp NFA.cpp DFAstate.cpp NFAstate.cpp pair.cpp
 FUZLIBSOURCES = libfuzzy.cpp general_algorithm.cpp matching_algorithm.cpp
 OBJECTS = $(SOURCES:%.cpp=%.o)
 DEPS = make.dep
@@ -24,7 +24,7 @@ RM=rm -f
 all: $(FUZLIBDEPS) $(FUZLIBTARGET) $(DEPS) $(TARGET) $(LCSDEPS) $(LEVDEPS) $(LEVAUTOMATADEPS) $(LCSTARGET) $(LEVTARGET) $(LEVAUTOMATATARGET)
 
 $(TARGET): $(OBJECTS)
-	$(CC) -ldl  -Wl,-rpath,. -L. -lfuzzy -o $@ $(OBJECTS) -Wl,-undefined -Wl,dynamic_lookup
+	$(CC) -rdynamic -Wl,-rpath,. -L. -lfuzzy -o $@ $(OBJECTS) -ldl -Wl,--unresolved-symbols=ignore-in-shared-libs
 
 $(LCSTARGET): $(LCSSOURCES)
 	$(CC) -fPIC -shared $(LCSSOURCES) -o $@
