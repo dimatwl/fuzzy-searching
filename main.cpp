@@ -12,13 +12,9 @@ int main (int argc, char** argv) {
     Create = (LevenshteinAutomata*(*)()) dlsym(lib_handle, "Create");
     LevenshteinAutomata* alg = Create();
 
-    lib_handle = dlopen("./fuzzy_lib.so", RTLD_NOW);
-    FuzzyLib* (*CreateM)(MatchingAlgorithm*);
-    CreateM = (FuzzyLib*(*)(MatchingAlgorithm*)) dlsym(lib_handle, "CreateM");
-    FuzzyLib* lib = CreateM(alg);
+    FuzzyLib lib(alg);
     
-    //cout<<alg->Prefix(firstString,secondString)<<endl;
-    lib->SetPattern(firstString,5);
-    cout<<lib->Match(secondString)<<endl;
+    lib.SetPattern(firstString,5);
+    cout<<lib.Match(secondString)<<endl;
     return 0;
 }

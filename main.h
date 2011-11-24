@@ -6,7 +6,7 @@
 #include "LCS.h"
 #include "levenshtein.h"
 #include "levenshtein_automata.h"
-#include "fuzzy_lib.h"
+#include "libfuzzy.h"
 #include <dlfcn.h>
 
 using std::vector;

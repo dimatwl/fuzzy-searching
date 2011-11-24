@@ -1,5 +1,5 @@
-#ifndef __FUZZY_LIB_H__
-#define __FUZZY_LIB_H__
+#ifndef __LIBFUZZY_H__
+#define __LIBFUZZY_H__
 
 #include <string>
 #include "general_algorithm.h"
@@ -26,4 +26,4 @@ public:
 };
 
 
-#endif /* __FUZZY_LIB_H__ */
+#endif /* __LIBFUZZY_H__ */

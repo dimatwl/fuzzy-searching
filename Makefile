@@ -5,7 +5,7 @@ SOURCES = main.cpp
 LCSSOURCES = LCS.cpp general_algorithm.cpp matching_algorithm.cpp
 LEVSOURCES = levenshtein.cpp general_algorithm.cpp matching_algorithm.cpp
 LEVAUTOMATASOURCES = levenshtein_automata.cpp DFA.cpp NFA.cpp DFAState.cpp NFAState.cpp pair.cpp
-FUZLIBSOURCES = fuzzy_lib.cpp general_algorithm.cpp matching_algorithm.cpp
+FUZLIBSOURCES = libfuzzy.cpp general_algorithm.cpp matching_algorithm.cpp
 OBJECTS = $(SOURCES:%.cpp=%.o)
 DEPS = make.dep
 LCSDEPS = lcsmake.dep
@@ -16,15 +16,15 @@ TARGET = agrep
 LCSTARGET = LCS.so
 LEVTARGET = levenshtein.so
 LEVAUTOMATATARGET = levenshtein_automata.so
-FUZLIBTARGET = fuzzy_lib.so
+FUZLIBTARGET = libfuzzy.so
 
 
 RM=rm -f
 
-all: $(TARGET) $(LCSTARGET) $(LEVTARGET) $(LEVAUTOMATATARGET) $(FUZLIBTARGET) $(DEPS) $(LCSDEPS) $(LEVDEPS) $(LEVAUTOMATADEPS) $(FUZLIBDEPS)
+all: $(FUZLIBDEPS) $(FUZLIBTARGET) $(DEPS) $(TARGET) $(LCSDEPS) $(LEVDEPS) $(LEVAUTOMATADEPS) $(LCSTARGET) $(LEVTARGET) $(LEVAUTOMATATARGET)
 
 $(TARGET): $(OBJECTS)
-	$(CC) -ldl -o $@ $(OBJECTS) -Wl,-undefined -Wl,dynamic_lookup
+	$(CC) -ldl  -Wl,-rpath,. -L. -lfuzzy -o $@ $(OBJECTS) -Wl,-undefined -Wl,dynamic_lookup
 
 $(LCSTARGET): $(LCSSOURCES)
 	$(CC) -fPIC -shared $(LCSSOURCES) -o $@
