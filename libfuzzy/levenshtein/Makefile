@@ -1,15 +1,17 @@
 CC=g++
 CFLAGS=-Wall
 
-SOURCES = main.cpp
+SOURCES = levenshtein.cpp
 OBJECTS = $(SOURCES:%.cpp=%.o)
 DEPS = make.dep
-TARGET = test
+TARGET = levenshtein.so
+
+
 
 RM=rm -f
 
-$(TARGET): $(OBJECTS)
-	$(CC) -ldl  -Wl,-rpath,. -L. -lfuzzy -o $@ $(OBJECTS) -Wl,-undefined -Wl,dynamic_lookup
+$(TARGET): $(SOURCES)
+	$(CC) -fPIC -shared $(SOURCES) -o $@
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< 

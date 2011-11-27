@@ -1,25 +1,24 @@
 CC=g++
 CFLAGS=-Wall
 
-SOURCES = main.cpp
+SOURCES = LCS.cpp
 OBJECTS = $(SOURCES:%.cpp=%.o)
 DEPS = make.dep
-TARGET = test
+TARGET = LCS.so
 
 RM=rm -f
 
-$(TARGET): $(OBJECTS)
-	$(CC) -ldl  -Wl,-rpath,. -L. -lfuzzy -o $@ $(OBJECTS) -Wl,-undefined -Wl,dynamic_lookup
+$(TARGET): $(SOURCES)
+	$(CC) -fPIC -shared $(SOURCES) -o $@
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< 
 
-
 $(DEPS): $(SOURCES)
 	$(CC) -MM $(SOURCES) > $(DEPS)
+
 
 -include $(DEPS)
 
 clean:
 	$(RM) $(OBJECTS) $(TARGET) $(DEPS)
-
