@@ -4,7 +4,7 @@
 
 #include <set>
 #include "pair.h"
-#include "NFAstate.cpp"
+#include "NFAstate.h"
 
 using std::set;
 
