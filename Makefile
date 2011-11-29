@@ -9,7 +9,7 @@ TARGET = test
 RM=rm -f
 
 $(TARGET): $(OBJECTS)
-	$(CC) -ldl  -Wl,-rpath,. -L. -lfuzzy -o $@ $(OBJECTS) -Wl,-undefined -Wl,dynamic_lookup
+	$(CC) -rdynamic -Wl,-rpath,. -L. -lfuzzy -o $@ $(OBJECTS) -ldl -Wl,--unresolved-symbols=ignore-in-shared-libs
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< 
