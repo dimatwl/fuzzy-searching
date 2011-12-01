@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-Wall
 
-SOURCES = levenshtein_automata.cpp DFA.cpp NFA.cpp DFAState.cpp NFAState.cpp pair.cpp
+SOURCES = levenshtein_automata.cpp DFA.cpp NFA.cpp DFAstate.cpp NFAstate.cpp pair.cpp
 OBJECTS = $(SOURCES:%.cpp=%.o)
 DEPS = make.dep
 TARGET = levenshtein_automata.so
@@ -9,7 +9,7 @@ TARGET = levenshtein_automata.so
 RM=rm -f
 
 $(TARGET): $(SOURCES)
-	$(CC) -fPIC -shared $(SOURCES) -o $@
+	$(CC) -pg -fPIC -shared $(SOURCES) -o $@
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< 

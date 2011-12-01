@@ -9,7 +9,7 @@ TARGET = LCS.so
 RM=rm -f
 
 $(TARGET): $(SOURCES)
-	$(CC) -fPIC -shared $(SOURCES) -o $@
+	$(CC) -pg -fPIC -shared $(SOURCES) -o $@
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< 
