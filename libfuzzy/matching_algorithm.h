@@ -9,6 +9,10 @@ class MatchingAlgorithm{
 public:
     virtual void SetPattern(const string & pattern, unsigned int distance) = 0;
     virtual bool Match(const string& testString) const = 0;
+
+    virtual void ProcessSymbols(const string& testString) = 0;
+    virtual bool IsMatched() const = 0;
+    virtual bool IsUnacceptable() const = 0;
 };
 
 

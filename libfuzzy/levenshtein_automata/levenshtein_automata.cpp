@@ -42,17 +42,32 @@ void LevenshteinAutomata::SetPattern(const string & pattern, unsigned int distan
 
     this->myDFA = nfa.ToDFA();
     this->myDFA.setDeadState(DFAState<unsigned int>(NFAState<unsigned int>(pattern.size() + 1,pattern.size() + 1)));
+    this->currentState = this->myDFA.GetStartState();
 }
 
 bool LevenshteinAutomata::Match(const string& testString) const{
-    DFAState<unsigned int> currentState = this->myDFA.GetStartState();
+    DFAState<unsigned int> State = this->myDFA.GetStartState();
     for (unsigned int i = 0; i < testString.size(); ++i)
-        currentState = this->myDFA.GetNextDFAState(currentState, string(testString, i, 1));
-    if (this->myDFA.IsFinal(currentState))
+        State = this->myDFA.GetNextDFAState(State, string(testString, i, 1));
+    if (this->myDFA.IsFinal(State))
         return true;
     else
         return false;
 }
+
+void  LevenshteinAutomata::ProcessSymbols(const string& testString){
+    for (unsigned int i = 0; i < testString.size(); ++i)
+        this->currentState = this->myDFA.GetNextDFAState(this->currentState, string(testString, i, 1));
+}
+
+bool LevenshteinAutomata::IsMatched() const{
+    return this->myDFA.IsFinal(this->currentState);
+}
+
+bool LevenshteinAutomata::IsUnacceptable() const{
+    return this->myDFA.IsDead(this->currentState);
+}
+
 
 extern "C"{
     LevenshteinAutomata* Create(){

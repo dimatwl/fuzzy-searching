@@ -32,6 +32,7 @@ public:
     void AddDefaultTransition(const DFAState<T>& inpSource, const DFAState<T>& inpDestination);
     void AddFinalState(const DFAState<T>& inpState);
     bool IsFinal(const DFAState<T>& inpDFAState) const;
+    bool IsDead(const DFAState<T>& inpDFAState) const;
     void setDeadState(const DFAState<T>& inpDeadState);
     const DFAState<T> GetNextDFAState(const DFAState<T>& inpDFAState, const string& inpInput);
     const DFAState<T> GetStartState();
@@ -74,6 +75,14 @@ bool DFA<T>::IsFinal(const DFAState<T>& inpDFAState) const{
         return false;
     else
         return true;
+}
+
+template <class T>
+bool DFA<T>::IsDead(const DFAState<T>& inpDFAState) const{
+    if (!(inpDFAState < this->deadEnd) && !((this->deadEnd < inpDFAState)))
+        return true;
+    else
+        return false;
 }
 
 template <class T>
