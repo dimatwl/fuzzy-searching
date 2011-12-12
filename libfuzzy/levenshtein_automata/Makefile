@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-Wall -iquote "./" -iquote "../headers"
+CFLAGS=-Wall -iquote "../headers"
 
 SOURCES = levenshtein_automata.cpp
 DEPS = make.dep
