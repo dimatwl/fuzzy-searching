@@ -1,9 +1,10 @@
 #ifndef LEVENSHTEIN_AUTOMATA_H
 #define LEVENSHTEIN_AUTOMATA_H
 
+#include <string>
+
 #include "DFA.h"
 #include "NFA.h"
-#include <string>
 #include "general_algorithm.h"
 #include "matching_algorithm.h"
 

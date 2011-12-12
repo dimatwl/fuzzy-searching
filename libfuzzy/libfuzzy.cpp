@@ -22,3 +22,15 @@ void FuzzyLib::SetPattern(const string & pattern, unsigned int distance){
 bool FuzzyLib::Match(const string& testString) const{
 	return this->myMatchingAlgorithm->Match(testString);
 }
+
+void FuzzyLib::ProcessSymbols(const string& testString){
+	return this->myMatchingAlgorithm->ProcessSymbols(testString);
+}
+
+bool FuzzyLib::IsMatched() const{
+	return this->myMatchingAlgorithm->IsMatched();
+}
+
+bool FuzzyLib::IsUnacceptable() const{
+	return this->myMatchingAlgorithm->IsUnacceptable();
+}

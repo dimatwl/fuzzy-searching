@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-Wall
+CFLAGS=-Wall -iquote "./headers"
 
 SOURCES = libfuzzy.cpp
 OBJECTS = $(SOURCES:%.cpp=%.o)
@@ -16,10 +16,8 @@ RM=rm -f
 all: LB $(TARGET)
 
 $(TARGET): $(SOURCES)
-	$(CC) -pg -fPIC -shared $(SOURCES) -o $@
+	$(CC) $(CFLAGS) -fPIC -shared $(SOURCES) -o $@
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< 
 
 LB:
 	for d in $(LIBS); \
@@ -29,7 +27,7 @@ LB:
 
 
 $(DEPS): $(SOURCES)
-	$(CC) -MM $(SOURCES) > $(DEPS)
+	$(CC) -MM -iquote "./headers" $(SOURCES) > $(DEPS)
 
 
 -include $(DEPS)

@@ -1,18 +1,20 @@
 
-#ifndef lev_avt_NFAstate_h
-#define lev_avt_NFAstate_h
+#ifndef __NFASTATE_H__
+#define __NFASTATE_H__
 
-#include "pair.h"
+#include <utility>
 
 //Declarations:
+using std::pair;
 
 template <class T>
 class NFAState{
-    Pair<T> value;
+
+    pair<T,T> value;
 
 public:
     NFAState(const T& inpFirstValue, const T& inpSecondValue);
-    const Pair<T>& GetValue() const;
+    const pair<T,T>& GetValue() const;
 };
 
 template <class T>
@@ -25,16 +27,16 @@ template <class T>
 bool operator<(const NFAState<T>& inpLeftNFAState, const NFAState<T>& inpRightNFAState);
 
 template <class T>
-bool operator<(const Pair<T>& inpLeftPair, const Pair<T>& inpRightPair);
+bool operator<(const pair<T,T>& inpLeftPair, const pair<T,T>& inpRightPair);
 
 
 //Definitions:
 
 template <class T>
-NFAState<T>::NFAState(const T& inpFirstValue, const T& inpSecondValue): value(Pair<T>(inpFirstValue, inpSecondValue)){}
+NFAState<T>::NFAState(const T& inpFirstValue, const T& inpSecondValue): value(pair<T,T>(inpFirstValue, inpSecondValue)){}
 
 template <class T>
-const Pair<T>& NFAState<T>::GetValue() const{
+const pair<T,T>& NFAState<T>::GetValue() const{
     return this->value;
 }
 
@@ -50,14 +52,14 @@ bool operator<(const NFAState<T>& inpLeftNFAState, const NFAState<T>& inpRightNF
 }
 
 template <class T>
-bool operator<(const Pair<T>& inpLeftPair, const Pair<T>& inpRightPair){
-    if (inpLeftPair.GetFirstValue() < inpRightPair.GetFirstValue())
+bool operator<(const pair<T,T>& inpLeftPair, const pair<T,T>& inpRightPair){
+    if (inpLeftPair.first < inpRightPair.first)
         return true;
-    else if (inpLeftPair.GetFirstValue() == inpRightPair.GetFirstValue())
-        return inpLeftPair.GetSecondValue() < inpRightPair.GetSecondValue();
+    else if (inpLeftPair.first == inpRightPair.first)
+        return inpLeftPair.second < inpRightPair.second;
     else
         return false;
 }
 
 
-#endif
+#endif /* __NFASTATE_H__ */

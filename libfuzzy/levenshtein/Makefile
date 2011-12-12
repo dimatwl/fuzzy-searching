@@ -1,24 +1,20 @@
 CC=g++
-CFLAGS=-Wall
+CFLAGS=-Wall -iquote "../headers"
 
 SOURCES = levenshtein.cpp
-OBJECTS = $(SOURCES:%.cpp=%.o)
 DEPS = make.dep
-TARGET = levenshtein.so
+TARGET = ../levenshtein.so
 
 
 
 RM=rm -f
 
 $(TARGET): $(SOURCES)
-	$(CC) -pg -fPIC -shared $(SOURCES) -o $@
-
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< 
+	$(CC) $(CFLAGS) -fPIC -shared $(SOURCES) -o $@
 
 
 $(DEPS): $(SOURCES)
-	$(CC) -MM $(SOURCES) > $(DEPS)
+	$(CC) -MM -iquote "../headers" $(SOURCES) > $(DEPS)
 
 -include $(DEPS)
 

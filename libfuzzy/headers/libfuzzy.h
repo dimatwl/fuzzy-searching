@@ -19,6 +19,9 @@ public:
     //Matching interface:
     void SetPattern(const string & pattern, unsigned int distance);
     bool Match(const string& testString) const;
+    void ProcessSymbols(const string& testString);
+    bool IsMatched() const;
+    bool IsUnacceptable() const;
     
     FuzzyLib(GeneralAlgorithm* inpGeneralAlgorithm);
     FuzzyLib(MatchingAlgorithm* inpMatchingAlgorithm);

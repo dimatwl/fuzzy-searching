@@ -1,26 +1,29 @@
 
-#ifndef lev_avt_NFA_h
-#define lev_avt_NFA_h
+#ifndef __NFA_H__
+#define __NFA_H__
 
 #include <map>
 #include <vector>
 #include <set>
 #include <string>
 #include <utility>
+
 #include "NFAstate.h"
 #include "DFAstate.h"
 #include "DFA.h"
 
+    using std::vector;
+    using std::map;
+    using std::string;
+    using std::set;
+    using std::pair;
 
-using std::vector;
-using std::map;
-using std::string;
-using std::set;
 
 //Declarations:
 
 template <class T>
 class NFA {
+
     set<NFAState<T>, NFAStateComparation<T> > startStates;
     set<NFAState<T>, NFAStateComparation<T> > finalStates;
     map<NFAState<T>, map<string, set<NFAState<T>, NFAStateComparation<T> > >, NFAStateComparation<T> > transitions;
@@ -55,12 +58,12 @@ void NFA<T>::AddTransition(const NFAState<T>& inpSource, const NFAState<T>& inpD
         map<string, set<NFAState<T>, NFAStateComparation<T> > > newTransition;
         set<NFAState<T>, NFAStateComparation<T> > dest;
         dest.insert(inpDestination);
-        newTransition.insert(std::pair<string, set<NFAState<T>, NFAStateComparation<T> > >(inpInput, dest));
-        this->transitions.insert(std::pair<NFAState<T>, map<string, set<NFAState<T>, NFAStateComparation<T> > > >(inpSource, newTransition));
+        newTransition.insert(pair<string, set<NFAState<T>, NFAStateComparation<T> > >(inpInput, dest));
+        this->transitions.insert(pair<NFAState<T>, map<string, set<NFAState<T>, NFAStateComparation<T> > > >(inpSource, newTransition));
     } else if (transitionForSource->second.find(inpInput) == transitionForSource->second.end()){
         set<NFAState<T>, NFAStateComparation<T> > dest;
         dest.insert(inpDestination);
-        transitionForSource->second.insert(std::pair<string, set<NFAState<T>, NFAStateComparation<T> > >(inpInput, dest));
+        transitionForSource->second.insert(pair<string, set<NFAState<T>, NFAStateComparation<T> > >(inpInput, dest));
     } else{
         set<NFAState<T>, NFAStateComparation<T> > st = transitionForSource->second.find(inpInput)->second;
         transitionForSource->second.find(inpInput)->second.insert(inpDestination);
@@ -233,4 +236,4 @@ DFA<T> NFA<T>::ToDFA(){
     return dfa;
 }
 
-#endif
+#endif /* __NFA_H__ */

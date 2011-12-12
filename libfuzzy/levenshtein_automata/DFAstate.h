@@ -1,17 +1,18 @@
 
-#ifndef lev_avt_DFAstate_h
-#define lev_avt_DFAstate_h
+#ifndef __DFASTATE_H__
+#define __DFASTATE_H__
 
 #include <set>
-#include "pair.h"
+
 #include "NFAstate.h"
 
-using std::set;
+    using std::set;
 
 //Declarations:
 
 template <class T>
 class DFAState{
+
     set<NFAState<T>, NFAStateComparation<T> > value;
     
 public:
@@ -80,4 +81,4 @@ bool operator<(const DFAState<T>& inpLeftDFAState, const DFAState<T>& inpRightDF
     return inpLeftDFAState.GetValue().size() < inpRightDFAState.GetValue().size();
 }
 
-#endif
+#endif /* __DFASTATE_H__ */

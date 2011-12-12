@@ -1,22 +1,18 @@
 CC=g++
-CFLAGS=-Wall
+CFLAGS=-Wall -iquote "./" -iquote "../headers"
 
-SOURCES = levenshtein_automata.cpp DFA.cpp NFA.cpp DFAstate.cpp NFAstate.cpp pair.cpp
-OBJECTS = $(SOURCES:%.cpp=%.o)
+SOURCES = levenshtein_automata.cpp
 DEPS = make.dep
-TARGET = levenshtein_automata.so
+TARGET = ../levenshtein_automata.so
 
 RM=rm -f
 
 $(TARGET): $(SOURCES)
-	$(CC) -pg -fPIC -shared $(SOURCES) -o $@
-
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< 
+	$(CC) $(CFLAGS) -fPIC -shared $(SOURCES) -o $@
 
 
 $(DEPS): $(SOURCES)
-	$(CC) -MM $(SOURCES) > $(DEPS)
+	$(CC) -MM -iquote "./" -iquote "../headers" $(SOURCES) > $(DEPS)
 
 -include $(DEPS)
 

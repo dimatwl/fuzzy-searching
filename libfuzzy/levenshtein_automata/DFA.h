@@ -1,25 +1,27 @@
 
-#ifndef lev_avt_DFA_h
-#define lev_avt_DFA_h
+#ifndef __DFA_H__
+#define __DFA_H__
 
 #include <map>
 #include <vector>
 #include <set>
 #include <string>
 #include <utility>
+
 #include "NFAstate.h"
 #include "DFAstate.h"
 
-
-using std::vector;
-using std::map;
-using std::string;
-using std::set;
+    using std::vector;
+    using std::map;
+    using std::string;
+    using std::set;
+    using std::pair;
 
 //Declarations:
 
 template <class T>
 class DFA {
+
     DFAState<T> startState;
     DFAState<T> deadEnd;
     set<DFAState<T>, DFAStateComparation<T> > finalStates;
@@ -33,7 +35,7 @@ public:
     void AddFinalState(const DFAState<T>& inpState);
     bool IsFinal(const DFAState<T>& inpDFAState) const;
     bool IsDead(const DFAState<T>& inpDFAState) const;
-    void setDeadState(const DFAState<T>& inpDeadState);
+    void SetDeadState(const DFAState<T>& inpDeadState);
     const DFAState<T> GetNextDFAState(const DFAState<T>& inpDFAState, const string& inpInput);
     const DFAState<T> GetStartState();
 };
@@ -58,35 +60,29 @@ void DFA<T>::AddTransition(const DFAState<T>& inpSource, const DFAState<T>& inpD
     typename map<DFAState<T>, map<string, DFAState<T> >, DFAStateComparation<T> >::iterator transitionForSource = this->transitions.find(inpSource);
     if (transitionForSource == this->transitions.end()){
         map<string, DFAState<T> > newTransition;
-        newTransition.insert(std::pair<string, DFAState<T> >(inpInput, inpDestination));
-        this->transitions.insert(std::pair<DFAState<T>,  map<string, DFAState<T> > >(inpSource, newTransition));
+        newTransition.insert(pair<string, DFAState<T> >(inpInput, inpDestination));
+        this->transitions.insert(pair<DFAState<T>,  map<string, DFAState<T> > >(inpSource, newTransition));
     } else
-        transitionForSource->second.insert(std::pair<string, DFAState<T> >(inpInput, inpDestination));
+        transitionForSource->second.insert(pair<string, DFAState<T> >(inpInput, inpDestination));
 }
 
 template <class T>
 void DFA<T>::AddDefaultTransition(const DFAState<T>& inpSource, const DFAState<T>& inpDestination){
-    this->defaults.insert(std::pair<DFAState<T>, DFAState<T> >(inpSource, inpDestination));
+    this->defaults.insert(pair<DFAState<T>, DFAState<T> >(inpSource, inpDestination));
 }
 
 template <class T>
 bool DFA<T>::IsFinal(const DFAState<T>& inpDFAState) const{
-    if (this->finalStates.find(inpDFAState) == this->finalStates.end())
-        return false;
-    else
-        return true;
+    return this->finalStates.find(inpDFAState) != this->finalStates.end();
 }
 
 template <class T>
 bool DFA<T>::IsDead(const DFAState<T>& inpDFAState) const{
-    if (!(inpDFAState < this->deadEnd) && !((this->deadEnd < inpDFAState)))
-        return true;
-    else
-        return false;
+    return !(inpDFAState < this->deadEnd) && !((this->deadEnd < inpDFAState));
 }
 
 template <class T>
-void DFA<T>::setDeadState(const DFAState<T>& inpDeadState){
+void DFA<T>::SetDeadState(const DFAState<T>& inpDeadState){
     this->deadEnd = inpDeadState;
     this->AddDefaultTransition(this->deadEnd, this->deadEnd);
 }
@@ -121,4 +117,4 @@ const DFAState<T> DFA<T>::GetStartState(){
     return this->startState;
 }
 
-#endif
+#endif /* __DFA_H__ */

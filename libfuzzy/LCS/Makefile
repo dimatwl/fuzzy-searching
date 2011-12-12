@@ -1,21 +1,18 @@
 CC=g++
-CFLAGS=-Wall
+CFLAGS=-Wall -iquote "../headers"
 
 SOURCES = LCS.cpp
-OBJECTS = $(SOURCES:%.cpp=%.o)
 DEPS = make.dep
-TARGET = LCS.so
+TARGET = ../LCS.so
 
 RM=rm -f
 
 $(TARGET): $(SOURCES)
-	$(CC) -pg -fPIC -shared $(SOURCES) -o $@
+	$(CC) $(CFLAGS) -fPIC -shared $(SOURCES) -o $@
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< 
 
 $(DEPS): $(SOURCES)
-	$(CC) -MM $(SOURCES) > $(DEPS)
+	$(CC) -MM -iquote "../headers" $(SOURCES) > $(DEPS)
 
 
 -include $(DEPS)

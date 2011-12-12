@@ -41,7 +41,7 @@ void LevenshteinAutomata::SetPattern(const string & pattern, unsigned int distan
     }
 
     this->myDFA = nfa.ToDFA();
-    this->myDFA.setDeadState(DFAState<unsigned int>(NFAState<unsigned int>(pattern.size() + 1,pattern.size() + 1)));
+    this->myDFA.SetDeadState(DFAState<unsigned int>(NFAState<unsigned int>(pattern.size() + 1,pattern.size() + 1)));
     this->currentState = this->myDFA.GetStartState();
 }
 
