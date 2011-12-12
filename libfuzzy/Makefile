@@ -4,7 +4,7 @@ CFLAGS=-Wall -iquote "./headers"
 SOURCES = libfuzzy.cpp
 OBJECTS = $(SOURCES:%.cpp=%.o)
 DEPS = make.dep
-TARGET = libfuzzy.so
+TARGET = ../libfuzzy.so
 LCS = ./LCS
 LEVENSHTEIN = ./levenshtein
 LEVENSHTEIN_AUTOMATA = ./levenshtein_automata

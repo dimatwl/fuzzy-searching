@@ -3,7 +3,7 @@ CFLAGS=-Wall -iquote "../headers"
 
 SOURCES = LCS.cpp
 DEPS = make.dep
-TARGET = ../LCS.so
+TARGET = ../../LCS.so
 
 RM=rm -f
 

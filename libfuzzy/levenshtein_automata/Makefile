@@ -3,7 +3,7 @@ CFLAGS=-Wall -iquote "./" -iquote "../headers"
 
 SOURCES = levenshtein_automata.cpp
 DEPS = make.dep
-TARGET = ../levenshtein_automata.so
+TARGET = ../../levenshtein_automata.so
 
 RM=rm -f
 
