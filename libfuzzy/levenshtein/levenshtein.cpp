@@ -1,5 +1,7 @@
 #include "levenshtein.h"
 
+using namespace libfuzzy;
+
 vector<vector<unsigned int> > Levenshtein::GetLDTable(const string& inpFirstString, const string& inpSecondString) const{
     string s = inpFirstString;
     string t = inpSecondString;

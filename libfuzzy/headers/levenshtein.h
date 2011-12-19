@@ -6,6 +6,9 @@
 #include "general_algorithm.h"
 
 
+namespace libfuzzy{
+
+
 
 using std::vector;
 using std::string;
@@ -27,6 +30,8 @@ public:
     double Mean(const string& pattern, const string& testString) const;
 
 };
+
+}
 
 
 #endif /* __LEVENSHTEIN_H__ */

@@ -4,6 +4,8 @@
 
 #include <utility>
 
+namespace libfuzzy{
+
 //Declarations:
 using std::pair;
 
@@ -59,6 +61,8 @@ bool operator<(const pair<T,T>& inpLeftPair, const pair<T,T>& inpRightPair){
         return inpLeftPair.second < inpRightPair.second;
     else
         return false;
+}
+
 }
 
 

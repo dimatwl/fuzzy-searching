@@ -1,5 +1,7 @@
 #include "libfuzzy.h"
 
+using namespace libfuzzy;
+
 double FuzzyLib::Prefix(const string& pattern, const string& testString) const{
     return this->myGeneralAlgorithm->Prefix(pattern, testString);
 }

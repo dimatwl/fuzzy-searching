@@ -8,6 +8,8 @@
 #include "general_algorithm.h"
 #include "matching_algorithm.h"
 
+namespace libfuzzy{
+
 using std::string;
 
 class LevenshteinAutomata: public MatchingAlgorithm
@@ -23,5 +25,6 @@ public:
     bool IsMatched() const;
     bool IsUnacceptable() const;
 };
+}
 
 #endif // LEVENSHTEIN_AUTOMATA_H

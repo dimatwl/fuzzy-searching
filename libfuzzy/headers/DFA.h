@@ -11,6 +11,8 @@
 #include "NFAstate.h"
 #include "DFAstate.h"
 
+namespace libfuzzy{
+
     using std::vector;
     using std::map;
     using std::string;
@@ -115,6 +117,8 @@ const DFAState<T>  DFA<T>::GetNextDFAState(const DFAState<T>& inpDFAState, const
 template <class T>
 const DFAState<T> DFA<T>::GetStartState(){
     return this->startState;
+}
+
 }
 
 #endif /* __DFA_H__ */

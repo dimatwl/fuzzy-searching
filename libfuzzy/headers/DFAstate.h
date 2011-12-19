@@ -6,6 +6,8 @@
 
 #include "NFAstate.h"
 
+namespace libfuzzy{
+
     using std::set;
 
 //Declarations:
@@ -79,6 +81,7 @@ bool operator<(const DFAState<T>& inpLeftDFAState, const DFAState<T>& inpRightDF
             continue;
         }
     return inpLeftDFAState.GetValue().size() < inpRightDFAState.GetValue().size();
+}
 }
 
 #endif /* __DFASTATE_H__ */

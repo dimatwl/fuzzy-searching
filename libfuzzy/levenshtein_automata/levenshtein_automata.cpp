@@ -1,5 +1,7 @@
 #include "levenshtein_automata.h"
 
+using namespace libfuzzy;
+
 
 LevenshteinAutomata::LevenshteinAutomata(){
 }

@@ -5,6 +5,8 @@
 #include "general_algorithm.h"
 #include "matching_algorithm.h"
 
+namespace libfuzzy{
+
 using std::string;
 
 class FuzzyLib{
@@ -27,6 +29,7 @@ public:
     FuzzyLib(MatchingAlgorithm* inpMatchingAlgorithm);
     
 };
+}
 
 
 #endif /* __LIBFUZZY_H__ */

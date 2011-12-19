@@ -12,6 +12,8 @@
 #include "DFAstate.h"
 #include "DFA.h"
 
+namespace libfuzzy{
+
     using std::vector;
     using std::map;
     using std::string;
@@ -234,6 +236,7 @@ DFA<T> NFA<T>::ToDFA(){
     }
     //return dfa
     return dfa;
+}
 }
 
 #endif /* __NFA_H__ */

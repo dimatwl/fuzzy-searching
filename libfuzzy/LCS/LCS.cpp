@@ -1,5 +1,7 @@
 #include "LCS.h"
 
+using namespace libfuzzy;
+
 vector<vector<unsigned int> > LCS::GetLCSTable(const string& inpFirstString, const string& inpSecondString) const{
     string X = inpFirstString;
     string Y = inpSecondString;
