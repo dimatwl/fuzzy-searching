@@ -124,6 +124,11 @@ bool Levenshtein::IsUnacceptable() const{
     }
 }
 
+void Levenshtein::ResetCurrentTestString(){
+    this->myTestStr.clear();
+}
+
+
 
 extern "C"{
     Levenshtein* Create(){

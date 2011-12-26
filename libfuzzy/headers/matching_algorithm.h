@@ -15,6 +15,7 @@ public:
     virtual void ProcessSymbols(const string& testString) = 0;
     virtual bool IsMatched() const = 0;
     virtual bool IsUnacceptable() const = 0;
+    virtual void ResetCurrentTestString() = 0;
 };
 }
 

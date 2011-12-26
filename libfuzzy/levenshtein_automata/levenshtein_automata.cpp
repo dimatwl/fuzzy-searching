@@ -70,6 +70,11 @@ bool LevenshteinAutomata::IsUnacceptable() const{
     return this->myDFA.IsDead(this->currentState);
 }
 
+void LevenshteinAutomata::ResetCurrentTestString(){
+    this->currentState = this->myDFA.GetStartState();
+}
+
+
 
 extern "C"{
     LevenshteinAutomata* Create(){

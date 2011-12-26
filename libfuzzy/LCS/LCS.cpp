@@ -101,6 +101,10 @@ bool LCS::IsUnacceptable() const{
     }
 }
 
+void LCS::ResetCurrentTestString(){
+    this->myTestStr.clear();
+}
+
 
 extern "C"{
     LCS* Create(){
