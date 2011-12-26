@@ -24,6 +24,7 @@ public:
     void ProcessSymbols(const string& testString);
     bool IsMatched() const;
     bool IsUnacceptable() const;
+    void ResetCurrentTestString();
     
     FuzzyLib(GeneralAlgorithm* inpGeneralAlgorithm);
     FuzzyLib(MatchingAlgorithm* inpMatchingAlgorithm);

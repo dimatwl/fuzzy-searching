@@ -12,7 +12,7 @@ double FuzzyLib::Mean(const string& pattern, const string& testString) const{
     return this->myGeneralAlgorithm->Mean(pattern, testString);
 }
 
-FuzzyLib::FuzzyLib(GeneralAlgorithm* inpGeneralAlgorithm):myMatchingAlgorithm(NULL), myGeneralAlgorithm(inpGeneralAlgorithm){}
+FuzzyLib::FuzzyLib(GeneralAlgorithm* inpGeneralAlgorithm):myMatchingAlgorithm(inpGeneralAlgorithm), myGeneralAlgorithm(inpGeneralAlgorithm){}
 
 FuzzyLib::FuzzyLib(MatchingAlgorithm* inpMatchingAlgorithm):myMatchingAlgorithm(inpMatchingAlgorithm), myGeneralAlgorithm(NULL){}
 
@@ -35,4 +35,8 @@ bool FuzzyLib::IsMatched() const{
 
 bool FuzzyLib::IsUnacceptable() const{
 	return this->myMatchingAlgorithm->IsUnacceptable();
+}
+
+void FuzzyLib::ResetCurrentTestString(){
+	return this->myMatchingAlgorithm->ResetCurrentTestString();
 }
