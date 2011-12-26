@@ -3,6 +3,8 @@
 
 #include <string>
 
+namespace libfuzzy{
+
 using std::string;
 
 class MatchingAlgorithm{
@@ -14,6 +16,7 @@ public:
     virtual bool IsMatched() const = 0;
     virtual bool IsUnacceptable() const = 0;
 };
+}
 
 
 #endif /* __MATCHING_ALGORITHM_H__ */

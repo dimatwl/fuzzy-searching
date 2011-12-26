@@ -20,12 +20,20 @@ class LCS: public GeneralAlgorithm {
 
     string myPattern;
     unsigned int myDistance;
-
+    string myTestStr;
     
 public:
+	//General interface:
     double Prefix(const string& pattern, const string& testString) const;
     double Suffix(const string& pattern, const string& testString) const;
     double Mean(const string& pattern, const string& testString) const;
+
+    //Matching interface:
+    void SetPattern(const string & pattern, unsigned int distance);
+    bool Match(const string& testString) const;
+    void ProcessSymbols(const string& testString);
+    bool IsMatched() const;
+    bool IsUnacceptable() const;
 
 };
 }

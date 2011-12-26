@@ -18,6 +18,7 @@ class LevenshteinAutomata: public MatchingAlgorithm
     DFAState<unsigned int> currentState;
 public:
     LevenshteinAutomata();
+    
     void SetPattern(const string & pattern, unsigned int distance);
     bool Match(const string& testString) const;
 

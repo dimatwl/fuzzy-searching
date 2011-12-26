@@ -10,7 +10,7 @@ namespace libfuzzy{
 using std::string;
 
 class FuzzyLib{
-    MatchingAlgorithm* myMatchingAlgorithm;
+    MatchingAlgorithm* myMatchingAlgorithm; //Stream algorithm
     GeneralAlgorithm* myGeneralAlgorithm;
 public:
     //General interface:

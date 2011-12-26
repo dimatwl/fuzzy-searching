@@ -91,7 +91,38 @@ double Levenshtein::Mean(const string& pattern, const string& testString) const{
     return static_cast<double>(this->GetLD(pattern, testString)) / mean;
 }
 
+void Levenshtein::SetPattern(const string & pattern, unsigned int distance){
+    this->myPattern = pattern;
+    this->myDistance = distance;
+}
 
+bool Levenshtein::Match(const string& testString) const{
+    if (this->GetLD(this->myPattern, testString) <= myDistance){
+        return true;
+    } else{
+        return false;
+    }
+}
+
+void Levenshtein::ProcessSymbols(const string& testString){
+    this->myTestStr += testString;
+}
+
+bool Levenshtein::IsMatched() const{
+    if (this->GetLD(this->myPattern, this->myTestStr) <= myDistance){
+        return true;
+    } else{
+        return false;
+    }
+}
+
+bool Levenshtein::IsUnacceptable() const{
+    if (this->myPattern.size() + this->myDistance < this->myTestStr.size()){
+        return true;
+    } else{
+        return false;
+    }
+}
 
 
 extern "C"{

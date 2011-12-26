@@ -68,6 +68,39 @@ double LCS::Mean(const string& pattern, const string& testString) const{
     return static_cast<double>(this->GetLCSLength(pattern, testString)) / mean;
 }
 
+void LCS::SetPattern(const string & pattern, unsigned int distance){
+    this->myPattern = pattern;
+    this->myDistance = distance;
+}
+
+bool LCS::Match(const string& testString) const{
+    if (this->GetLCSLength(this->myPattern, testString) <= myDistance){
+        return true;
+    } else{
+        return false;
+    }
+}
+
+void LCS::ProcessSymbols(const string& testString){
+    this->myTestStr += testString;
+}
+
+bool LCS::IsMatched() const{
+    if (this->GetLCSLength(this->myPattern, this->myTestStr) <= myDistance){
+        return true;
+    } else{
+        return false;
+    }
+}
+
+bool LCS::IsUnacceptable() const{
+    if (this->myPattern.size() + this->myDistance < this->myTestStr.size()){
+        return true;
+    } else{
+        return false;
+    }
+}
+
 
 extern "C"{
     LCS* Create(){
